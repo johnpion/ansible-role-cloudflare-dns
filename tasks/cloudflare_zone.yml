@@ -1,0 +1,43 @@
+- name: "Check zone {{ zone.name }}"
+  uri:
+    url: "https://api.cloudflare.com/client/v4/zones?name={{ zone.name }}&status=active&account.id={{ cloudflare_account_id }}&page=1&per_page=20&order=status&direction=desc&match=all"
+    headers:
+     X-Auth-Email: "{{ cloudflare_email }}"
+     X-Auth-Key: "{{ cloudflare_api_token }}"
+  register: cloudflare_check_zone
+  # no_log: True
+
+- name: set cloudflare_check_zone_count
+  set_fact:
+    cloudflare_check_zone_count: "{{ cloudflare_check_zone.json.result_info.count }}"
+
+- name: "Create zone {{ zone.name }}"
+  uri:
+    url: https://api.cloudflare.com/client/v4/zones
+    method: POST
+    headers:
+      X-Auth-Email: "{{ cloudflare_email }}"
+      X-Auth-Key: "{{ cloudflare_api_token }}"
+    body_format: json
+    body:
+      name: "{{ zone.name }}"
+      jump_start: False
+      type: full
+      account:
+        id: "{{ cloudflare_account_id }}"
+  when: not cloudflare_check_zone_count == "1"
+  # no_log: True
+
+- name: "Create record"
+  community.general.cloudflare_dns:
+    zone: "{{ zone.name }}"
+    record: "{% if record.name is defined %}{{ record.name }}{% else %}@{% endif %}"
+    type: "{% if record.type is defined %}{{ record.type }}{% else %}A{% endif %}"
+    value: "{{ record.value }}"
+    proxied: "{% if record.proxied is defined %}{{ record.proxied }}{% else %}false{% endif %}"
+    priority: "{% if record.priority is defined %}{{ record.priority }}{% else %}1{% endif %}"
+    account_email: "{{ cloudflare_email }}"
+    account_api_key: "{{ cloudflare_api_token }}"
+  loop: "{{ zone.record }}"
+  loop_control:
+    loop_var: record

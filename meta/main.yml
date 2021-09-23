@@ -1,9 +1,15 @@
 galaxy_info:
   author:    John Seregin seregin.john@gmail.com
   license:   license Apache-2.0
+<<<<<<< HEAD
   # role_name: cloudflare_dns
   # namespase: johnpion
   description: ansible role for management DNS records of Cloudflare
+=======
+  role_name: cloudflare_dns
+  namespase: johnpion
+  description: ansible role for management of DNS records on Cloudflare
+>>>>>>> stream
   min_ansible_version: 2.0
   platforms:
   - name: Debian
