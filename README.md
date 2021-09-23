@@ -9,10 +9,10 @@ OS: Debian 10
 
 ## Example Playbook
 ```
-- hosts: cloudflare_dns
+- hosts: cloudflare-dns
   roles:
-    - role: cloudflare_dns
-      tags: cloudflare_dns
+    - role: cloudflare-dns
+      tags: cloudflare-dns
 ```
 
 ## Example HostVars
