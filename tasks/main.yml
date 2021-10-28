@@ -1,19 +1,2 @@
-- name: "Get account_id for {{ cloudflare_email }}"
-  uri:
-    url: "https://api.cloudflare.com/client/v4/accounts?page=1&per_page=20&direction=desc"
-    headers:
-      X-Auth-Email: "{{ cloudflare_email }}"
-      X-Auth-Key: "{{ cloudflare_api_token }}"
-  register: account_id
-  delegate_to: localhost
-
-- name: "Set cloudflare_account_id - {{ account_id.json.result[0].id }}"
-  set_fact:
-    cloudflare_account_id : "{{ account_id.json.result[0].id }}"
-  delegate_to: localhost
-
-- include: cloudflare_zone.yml
-  delegate_to: localhost
-  loop: "{{ cloudflare_zone }}"
-  loop_control:
-    loop_var: zone
+- include: cloudflare.yml
+  when: cloudflare_api_token is defined
