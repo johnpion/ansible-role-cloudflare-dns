@@ -2,7 +2,7 @@ galaxy_info:
   author:    John Seregin seregin.john@gmail.com
   license:   license Apache-2.0
   role_name: cloudflare_dns
-  namespase: johnpion
+  namespace: johnpion
   description: ansible role for management of DNS records on Cloudflare
   min_ansible_version: 2.0
   platforms:
