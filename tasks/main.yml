@@ -1,2 +1,3 @@
-- include: cloudflare.yml
+- name: Run tasks
+  ansible.builtin.include_tasks: cloudflare.yml
   when: cloudflare_api_token is defined

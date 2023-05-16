@@ -1,14 +1,17 @@
 galaxy_info:
-  author:    John Seregin seregin.john@gmail.com
-  license:   license Apache-2.0
+  author: John Seregin seregin.john@gmail.com
+  license: license Apache-2.0
   role_name: cloudflare_dns
   namespace: johnpion
   description: ansible role for management of DNS records on Cloudflare
-  min_ansible_version: 2.0
+  min_ansible_version: '2.0'
   platforms:
-  - name: Debian
-    versions:
-    - buster
-  - name: MacOSX
-    version:
-    - 10.14
+    - name: Debian
+      versions:
+        - buster
+    - name: MacOSX
+      version:
+        - '10.14'
+        - '11'
+        - '12'
+        - '13'
