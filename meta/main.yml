@@ -1,5 +1,5 @@
 galaxy_info:
-  author: John Seregin seregin.john@gmail.com
+  author: Ivan Serohin
   license: license Apache-2.0
   role_name: cloudflare_dns
   namespace: johnpion
