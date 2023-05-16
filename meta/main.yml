@@ -4,7 +4,7 @@ galaxy_info:
   role_name: cloudflare_dns
   namespace: johnpion
   description: ansible role for management of DNS records on Cloudflare
-  min_ansible_version: '2.0'
+  min_ansible_version: '2.14'
   platforms:
     - name: Debian
       versions:
@@ -12,6 +12,4 @@ galaxy_info:
     - name: MacOSX
       version:
         - '10.14'
-        - '11'
-        - '12'
-        - '13'
+        - '13.0'
